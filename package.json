@@ -1,0 +1,29 @@
+{
+  "name": "landscapehub-pro",
+  "version": "0.1.0",
+  "description": "A modern AI-powered SaaS platform for landscaping businesses",
+  "private": true,
+  "scripts": {
+    "start": "echo \"No start script defined yet\" && exit 1",
+    "test": "echo \"No test framework configured yet\" && exit 1",
+    "lint": "echo \"No linting configured yet\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/LandscapingSaaS.git"
+  },
+  "keywords": [
+    "landscaping",
+    "saas",
+    "ai",
+    "property-management"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/your-username/LandscapingSaaS/issues"
+  },
+  "homepage": "https://github.com/your-username/LandscapingSaaS#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}
