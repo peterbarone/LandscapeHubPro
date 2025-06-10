@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm install --omit=dev
 
 # Bundle app source
 COPY . .
@@ -24,7 +24,7 @@ USER appuser
 EXPOSE 3000
 
 # Define environment variable
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 # Command to run the application
 CMD ["npm", "start"]
