@@ -38,13 +38,90 @@ When working on this project with Windsurf AI, use the following approach:
 
 ## Getting Started
 
-To begin development, the following initial tasks should be completed:
+To begin development, follow these steps:
 
-1. Configure VPS with Coolify (Task 1.1.1)
-2. Set up development environment (Task 1.1.2)
-3. Configure CI/CD pipeline (Task 1.1.3)
-4. Set up PostgreSQL database (Task 1.1.4)
+### 1. Set up Development Environment
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/LandscapingSaaS.git
+cd LandscapingSaaS
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your local configuration
+```
+
+### 2. Database Setup
+
+Ensure you have PostgreSQL installed and running, then:
+
+```bash
+# Run migrations to create database tables
+npm run db:migrate
+
+# Seed the database with test data
+npm run db:seed
+```
+
+### 3. Test Setup
+
+```bash
+# For test environment, create a test database and use .env.test
+cp .env.example .env.test
+# Edit .env.test with test database configuration
+
+# Setup test database
+npm run db:init:test
+```
+
+### 4. Running the Application
+
+```bash
+# Development mode with hot reloading
+npm run dev
+
+# Production mode
+npm start
+```
+
+## Testing
+
+We use Jest for unit and integration testing:
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with watch mode
+npm run test:watch
+
+# Run integration tests only
+npm run test:integration
+
+# Generate test coverage report
+npm run test:coverage
+```
+
+### Database Reset and Seeding
+
+```bash
+# Reset database (drops all tables, re-runs migrations, and seeds data)
+npm run db:reset
+
+# Undo all seeds
+npm run db:seed:undo
+
+# Undo all migrations
+npm run db:migrate:undo:all
+```
 
 ## Next Steps
 
-Review the PRD.md and TASKS.md files to understand the full scope of the project and begin planning your implementation approach with Windsurf AI.
+1. Complete API documentation with Swagger/OpenAPI
+2. Implement frontend with React
+3. Integrate Replicate API for SAM2 AI image processing
+4. Set up CI/CD pipeline with GitHub Actions

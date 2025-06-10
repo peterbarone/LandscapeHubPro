@@ -1,25 +1,49 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+const app = require('./app');
+const logger = require('./utils/logger');
+const { testConnection } = require('./db');
+const { setupAssociations } = require('./db/models');
+const { initializeStorage } = require('./config/storage');
 
-app.use(express.json());
+// Define port
+const PORT = process.env.PORT || 3000;
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+// Initialize the application
+const initializeApp = async () => {
+  try {
+    // Test database connection
+    const dbConnected = await testConnection();
+    
+    if (!dbConnected) {
+      logger.error('Failed to connect to the database. Exiting...');
+      process.exit(1);
+    }
+    
+    // Setup model associations
+    setupAssociations();
+    
+    // Initialize storage (MinIO)
+    await initializeStorage();
+    
+    // Start server
+    app.listen(PORT, () => {
+      logger.info(`Server is running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
+    });
+  } catch (error) {
+    logger.error('Application initialization failed:', error);
+    process.exit(1);
+  }
+};
+
+// Handle uncaught exceptions and rejections
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught Exception:', error);
+  process.exit(1);
 });
 
-// Root endpoint
-app.get('/', (req, res) => {
-  res.status(200).json({ 
-    message: 'LandscapeHub Pro API',
-    version: '0.1.0',
-    environment: process.env.NODE_ENV
-  });
+process.on('unhandledRejection', (error) => {
+  logger.error('Unhandled Rejection:', error);
+  process.exit(1);
 });
 
-// Start server
-app.listen(port, () => {
-  console.log(`LandscapeHub Pro API running on port ${port}`);
-  console.log(`Environment: ${process.env.NODE_ENV}`);
-});
+// Initialize the application
+initializeApp();
