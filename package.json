@@ -4,7 +4,8 @@
   "description": "A modern AI-powered SaaS platform for landscaping businesses",
   "private": true,
   "scripts": {
-    "start": "echo \"No start script defined yet\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "echo \"No test framework configured yet\" && exit 1",
     "lint": "echo \"No linting configured yet\" && exit 1"
   },
@@ -24,6 +25,10 @@
     "url": "https://github.com/your-username/LandscapingSaaS/issues"
   },
   "homepage": "https://github.com/your-username/LandscapingSaaS#readme",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }
