@@ -1,5 +1,7 @@
 # LandscapeHub Pro
 
+TESTING A READ ME UPDATE TO PUSH TO GET IT TO GITHUB
+
 A modern landscaping SaaS platform leveraging AI for efficient property management, scheduling, and business operations.
 
 ## Project Overview
