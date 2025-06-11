@@ -4,6 +4,7 @@ const companyRoutes = require('./companyRoutes');
 const clientRoutes = require('./clientRoutes');
 const propertyRoutes = require('./propertyRoutes');
 const jobRoutes = require('./jobRoutes');
+const statusRoutes = require('./status');
 const { notFoundHandler } = require('../middlewares/error');
 
 const router = express.Router();
@@ -20,6 +21,9 @@ router.get('/health', (req, res) => {
     version: API_VERSION
   });
 });
+
+// Status dashboard route (accessible without API version prefix)
+router.use('/status', statusRoutes);
 
 // Set up API routes
 router.use(`/${API_VERSION}/auth`, authRoutes);
